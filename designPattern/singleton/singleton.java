@@ -50,7 +50,6 @@ public class InitializationOnDemandHolderIdiom {
 	}
 	
 	public static InitializationOnDemandHolderIdiom getInstance () {
-		System.out.println("create instance");
 		return Singleton.instance;
 	}
 }
