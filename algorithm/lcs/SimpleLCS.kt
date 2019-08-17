@@ -41,5 +41,34 @@ fun LCSGenerator(a: String, b: String): Int {
 		println()
 	}
 	
+	// 여기서 완성된 LCS를 뽑아낸 후 a와 비교하여 글자를 추가하는 방법의 수를 찾아야 함
+	// LCS는 각 숫자가 시작되는 꼭지점을 찾아가서 가져오면 된다
+	var cx = arr1.size
+	var cy = arr2.size
+	var current = memo[cy][cx]
+	var lcs = StringBuilder()
+	while(current != 0) {
+		if(memo[cy-1][cx] == memo[cy][cx-1]) {
+			// 확인됨
+			println("POS: "+cx+" "+cy+" "+arr1[cx-1])
+			lcs.insert(0, arr1[cx-1])
+			cx--
+			cy--
+		}
+		else if(memo[cy-1][cx] > memo[cy][cx-1]) {
+			cy--
+		}
+		else if(memo[cy-1][cx] < memo[cy][cx-1]) {
+			cx--
+		}
+		else {
+			cx--
+			cy--
+		}
+		current = memo[cy][cx]
+	}
+	
+	println("LCS: "+lcs.toString())
+	
 	return maxval
 }
